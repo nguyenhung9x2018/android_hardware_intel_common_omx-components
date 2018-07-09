@@ -660,8 +660,10 @@ void OMXVideoDecoderAVCSecure::MemFreeDataBuffer(OMX_U8 *pBuffer) {
         return;
     }
 
+#ifndef PRE_ION_X86
     native_handle_close(native_handle);
     native_handle_delete(native_handle);
+#endif
     ALOGV("Free databuffer %p with data = %p", dataBuffer, dataBuffer->data);
     --mNumInportBuffers;
 }
